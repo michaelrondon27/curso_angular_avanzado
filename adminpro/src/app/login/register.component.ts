@@ -60,7 +60,8 @@ export class RegisterComponent implements OnInit {
     let usuario = new Usuario(
       this.forma.value.nombre,
       this.forma.value.correo,
-      this.forma.value.password
+      this.forma.value.password,
+      false,
     );
 
     this._usuarioService.crearUsuario( usuario ).subscribe( resp => { this.router.navigate(['/login']); });
