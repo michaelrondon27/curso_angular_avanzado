@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
-import { UsuarioService } from '../../services/service.index';
-import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
+import { UsuarioService, ModalUploadService } from '../../services/service.index';
 
 declare var swal: any;
 
