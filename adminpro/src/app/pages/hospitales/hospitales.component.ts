@@ -41,7 +41,7 @@ export class HospitalesComponent implements OnInit {
 
     this._hospitalService.cargarHospitales( this.desde ).subscribe( (resp: any) => {
 
-        if ( this.desde >= resp.total ) {
+        if ( this.desde >= resp.total && resp.total > 0 ) {
           this.desde -= 5;
           return this.cargarHospitales();
         }
