@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
+
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs/Observable';
+
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
@@ -105,6 +109,12 @@ export class UsuarioService {
       this.guardarStorage( resp.id, resp.token, resp.usuario, resp.menu  );
 
       return true;
+
+    }).catch( err => {
+
+      swal( 'Error en el login', err.error.mensaje, 'error');
+
+      return Observable.throw( err );
 
     });
 
