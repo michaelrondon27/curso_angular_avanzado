@@ -52,6 +52,12 @@ export class UsuarioService {
       swal('Usuario creado', usuario.email, 'success');
       return resp.usuario;
 
+    }).catch( err => {
+
+      swal( err.error.mensaje, err.error.errors.message, 'error');
+
+      return Observable.throw( err );
+
     });
 
   }
@@ -134,6 +140,12 @@ export class UsuarioService {
       swal('Usuario actualizado', usuario.nombre, 'success');
 
       return true;
+
+    }).catch( err => {
+
+      swal( err.error.mensaje, err.error.errors.message, 'error');
+
+      return Observable.throw( err );
 
     });
 
