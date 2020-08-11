@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { ChartsModule } from 'ng2-charts';
+
 // Modulos
 import { ComponentsModule } from '../components/components.module';
 import { SharedModule } from '../shared/shared.module';
@@ -26,6 +28,7 @@ import { ProgressComponent } from './progress/progress.component';
     ProgressComponent
   ],
   imports: [
+    ChartsModule,
     CommonModule,
     ComponentsModule,
     FormsModule,
