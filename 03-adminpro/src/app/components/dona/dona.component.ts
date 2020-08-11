@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { MultiDataSet, Label, Color } from 'ng2-charts';
 
@@ -10,13 +10,15 @@ import { MultiDataSet, Label, Color } from 'ng2-charts';
 })
 export class DonaComponent {
 
-  public doughnutChartLabels: Label[] = [
-    'Download Sales',
-    'In-Store Sales',
-    'Mail-Order Sales'
+  @Input() title: string = 'Sin titulo';
+
+  @Input() labels: Label[] = [
+    'label1',
+    'label2',
+    'label3'
   ];
 
-  public doughnutChartData: MultiDataSet = [
+  @Input() data: MultiDataSet = [
     [350, 450, 100],
   ];
 
