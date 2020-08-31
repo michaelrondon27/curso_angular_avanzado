@@ -16,27 +16,33 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: DashboardComponent
+                component: DashboardComponent,
+                data: { titulo: 'Dashboard' }
             },
             {
                 path: 'account-settings',
-                component: AccountSettingsComponent
+                component: AccountSettingsComponent,
+                data: { titulo: 'Ajustes de Cuenta' }
             },
             {
                 path: 'grafica1',
-                component: Grafica1Component
+                component: Grafica1Component,
+                data: { titulo: 'Gráfica #1' }
             },
             {
                 path: 'progress',
-                component: ProgressComponent
+                component: ProgressComponent,
+                data: { titulo: 'ProgressBar' }
             },
             {
                 path: 'promesas',
-                component: PromesasComponent
+                component: PromesasComponent,
+                data: { titulo: 'Promesas' }
             },
             {
                 path: 'rxjs',
-                component: RxjsComponent
+                component: RxjsComponent,
+                data: { titulo: 'RxJs' }
             },
         ]
     }
