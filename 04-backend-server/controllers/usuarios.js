@@ -48,6 +48,33 @@ const actualizarUsuario = async (req, res = response) => {
     }
 }
 
+const borrarUsuario = async (req, res = response) => {
+    const uid = req.params.id;
+
+    try {
+        const usuarioDB = await Usuario.findById(uid);
+
+        if ( !usuarioDB ) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'No existe un usuario por ese id'
+            });
+        }
+
+        await Usuario.findByIdAndDelete(uid);
+
+        res.json({
+            ok: true,
+            msg: 'Usuario eliminado'
+        });
+    } catch (error) {
+        res.status.json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
+}
+
 const crearUsuario = async (req, res = response) => {    
     const { email, password } = req.body;
 
@@ -93,6 +120,7 @@ const getUsuarios = async (req, res) => {
 
 module.exports = {
     actualizarUsuario,
+    borrarUsuario,
     crearUsuario,
     getUsuarios
 }
