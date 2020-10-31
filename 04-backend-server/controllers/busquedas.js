@@ -1,12 +1,24 @@
 const { response } = require('express');
 
-const getTodo = (req, res = response) => {
+const Hospital = require('../models/hospital');
+const Medico = require('../models/medico');
+const Usuario = require('../models/usuario');
+
+const getTodo = async (req, res = response) => {
     const busqueda = req.params.busqueda;
+    const regex = new RegExp( busqueda, 'i' );
+
+    const [ hospitales, medicos, usuarios] = await Promise.all([
+        Hospital.find({ nombre: regex }),
+        Medico.find({ nombre: regex }),
+        Usuario.find({ nombre: regex })
+    ]);
 
     res.json({
         ok: true,
-        msg: 'getTodo',
-        busqueda
+        hospitales,
+        medicos,
+        usuarios
     })
 }
 
