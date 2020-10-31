@@ -16,7 +16,11 @@ router.get('/', getMedicos);
 
 router.post(
     '/',
-    [],
+    [
+        validarJWT,
+        check('nombre', 'El nombre del médico es necesario').not().isEmpty(),
+        validarCampos
+    ],
     crearMedico
 );
 
