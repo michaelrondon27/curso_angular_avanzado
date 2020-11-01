@@ -121,7 +121,7 @@ const getUsuarios = async (req, res) => {
         Usuario.find({}, 'nombre email role google')
                                 .skip( desde )
                                 .limit( 5 ),
-        Usuario.count()
+        Usuario.countDocuments()
     ]);
 
     res.json({
