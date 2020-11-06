@@ -36,6 +36,7 @@ router.put(
 
 router.delete(
     '/:id',
+    validarJWT,
     borrarHospital
 );
 
