@@ -21,7 +21,7 @@ const actualizarHospital = async (req, res = response) => {
             usuario: uid
         };
 
-        const hospitalActualizado = await  Hospital.findByIdAndUpdate( id, cambiosHospital, { new: true } );
+        const hospitalActualizado = await Hospital.findByIdAndUpdate( id, cambiosHospital, { new: true } );
 
         res.json({
             ok: true,
@@ -48,7 +48,7 @@ const borrarHospital = async (req, res = response) => {
             });   
         }
 
-        await  Hospital.findByIdAndDelete( id );
+        await Hospital.findByIdAndDelete( id );
 
         res.json({
             ok: true,
