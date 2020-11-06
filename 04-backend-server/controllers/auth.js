@@ -9,15 +9,36 @@ const Usuario = require('../models/usuario');
 const googleSingIn = async (req, res = response) => {
     const googleToken = req.body.token;
 
-    const { name, email, picture } = await googleVerify( googleToken );
-
     try {
+        const { name, email, picture } = await googleVerify( googleToken );
+
+        const usuarioDB = await Usuario.findOne({ email });
+        let usuario;
+
+        if ( !usuarioDB ) {
+            // Si no existe el usuario
+            usuario = new Usuario({
+                nombre: name,
+                email,
+                password: '@@@',
+                img: picture,
+                google: true
+            });
+        } else {
+            // existe usuario
+            usuario = usuarioDB;
+            usuario.google = true;
+        }
+
+        // Guardar en DB
+        await usuario.save();
+
+        // Generar el token - JWT
+        const token = await generarJWT( usuario.id );
+
         res.json({
             ok: true,
-            msg: 'Google Sing In',
-            name,
-            email,
-            picture
+            token
         });
     } catch (error) {
         res.status(401).json({
@@ -48,7 +69,7 @@ const login = async (req, res = response) => {
             return res.status(400).json({
                 ok: false,
                 msg: 'Contraseña no válida'
-            })
+            });
         }
 
         // Generar el token - JWT
@@ -57,7 +78,7 @@ const login = async (req, res = response) => {
         res.json({
             ok: true,
             token
-        })
+        });
     } catch (error) {
         res.status(500).json({
             ok: false,
